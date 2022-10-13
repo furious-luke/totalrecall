@@ -1,0 +1,6 @@
+config
+secrets
+totalrecall
+backup_worker.so
+.log
+.envrc
