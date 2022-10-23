@@ -1,15 +1,13 @@
 FROM postgres:14.5-alpine3.16 AS mirror
 
-RUN apk add --no-cache go musl-dev linux-headers upx
+RUN apk add --no-cache go musl-dev linux-headers make upx
 ENV GOPATH=/go PATH=$PATH:/go/bin CGO_ENABLED=1 GOOS=linux
 
 COPY . /go/src/totalrecall/
 WORKDIR /go/src/totalrecall
-RUN    go build -ldflags="-s -w" \
-    && go install                \
+RUN    make                    \
+    && go install              \
     && upx /go/bin/totalrecall
-WORKDIR /go/src/totalrecall/worker
-RUN ./build.sh
 
 FROM postgres:14.5-alpine3.16
 COPY --from=mirror /go/bin/totalrecall /usr/bin/
