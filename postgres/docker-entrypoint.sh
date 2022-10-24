@@ -317,11 +317,12 @@ _main() {
 	fi
 
 	if [ "$1" = 'postgres' ] && ! _pg_want_help "$@"; then
+		docker_setup_env
+
         # BEGIN EDITS
         docker_try_restore
         # END EDITS
 
-		docker_setup_env
 		# setup data directories and permissions (when run as root)
 		docker_create_db_directories
 		if [ "$(id -u)" = '0' ]; then

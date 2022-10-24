@@ -1,12 +1,12 @@
-bucket: kettle-cloud
-storage-prefix: database-backups
-encryption-key: file:/run/secrets/backup_encryption_key
+bucket: env:TOTALRECALL_BUCKET
+storage-prefix: env:TOTALRECALL_STORAGE_PREFIX
+encryption-key: env:TOTALRECALL_ENCRYPTION_KEY
 database:
-  id: file:/run/config/database_id
-  name: postgres
-  user: postgres
+  id: env:TOTALRECALL_DATABASE_ID
+  name: env:POSTGRES_DB
+  user: env:POSTGRES_USER
   password: env:POSTGRES_PASSWORD
   data-dir: env:PGDATA
-aws-access-key-id: file:/run/secrets/aws_access_key_id
-aws-secret-access-key: file:/run/secrets/aws_secret_access_key
-aws-region: ap-southeast-2
+aws-access-key-id: env:AWS_ACCESS_KEY_ID
+aws-secret-access-key: env:AWS_SECRET_ACCESS_KEY
+aws-region: env:AWS_REGION
