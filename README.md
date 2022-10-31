@@ -34,6 +34,7 @@ An example:
  
 ```bash
 docker run \
+  -e POSTGRES_PASSWORD=my-secret-password \
   -e TOTALRECALL_DATABASE_ID=38dc0ad2-af58-436a-a323-15f651ce0e54 \
   -e TOTALRECALL_ENCRYPTION_KEY=6F93DD1BB3EBF3A461C96FF5E91AA \
   -e TOTALRECALL_BUCKET=my-bucket \
@@ -50,6 +51,7 @@ located somewhere like `/run/secrets`. These may be specified as follows:
 
 ```bash
 docker run \
+  -e POSTGRES_PASSWORD_FILE=/run/secrets/database_password \
   -e TOTALRECALL_DATABASE_ID=file:/run/secrets/database_id \
   -e TOTALRECALL_ENCRYPTION_KEY=file:/run/secrets/backup_encryption_key \
   -e TOTALRECALL_BUCKET=my-bucket \
@@ -59,6 +61,8 @@ docker run \
   -e AWS_REGION=ap-southeast-2 \
   furiousluke/totalrecall
 ```
+
+Please note the use of `POSTGRES_PASSWORD_FILE` instead of `POSTGRES_PASSWORD`.
 
 ### Building the image
 
