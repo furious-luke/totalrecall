@@ -70,7 +70,7 @@ From within the root directory of the cloned repository, build the Docker image
 locally with:
 
 ```bash
-docker build -t totalrecall ./postgres .
+docker build -t totalrecall -f ./postgres/Dockerfile .
 ```
 
 ### Stand-alone
